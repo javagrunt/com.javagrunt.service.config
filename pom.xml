@@ -21,6 +21,7 @@
     <repackage.classifier></repackage.classifier>
     <spring-cloud.version>2021.0.1</spring-cloud.version>
     <spring-native.version>0.11.3</spring-native.version>
+    <registry.token></registry.token>
     <registry.url>https://ghcr.io/</registry.url>
   </properties>
 
@@ -167,6 +168,7 @@
               </image>
               <docker>
                 <publishRegistry>
+                  <token>${registry.token}</token>
                   <url>${registry.url}</url>
                 </publishRegistry>
               </docker>
@@ -196,6 +198,7 @@
               </image>
               <docker>
                 <publishRegistry>
+                  <token>${registry.token}</token>
                   <url>${registry.url}</url>
                 </publishRegistry>
               </docker>
