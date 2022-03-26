@@ -21,6 +21,7 @@
     <repackage.classifier></repackage.classifier>
     <spring-cloud.version>2021.0.1</spring-cloud.version>
     <spring-native.version>0.11.3</spring-native.version>
+    <registry.url>https://ghcr.io/</registry.url>
   </properties>
 
   <dependencyManagement>
@@ -164,6 +165,11 @@
                 </env>
                 <name>${project.artifactId}:${project.version}-arm64</name>
               </image>
+              <docker>
+                <publishRegistry>
+                  <url>${registry.url}</url>
+                </publishRegistry>
+              </docker>
             </configuration>
           </plugin>
         </plugins>
@@ -188,6 +194,11 @@
                 </env>
                 <name>${project.artifactId}:${project.version}-amd64</name>
               </image>
+              <docker>
+                <publishRegistry>
+                  <url>${registry.url}</url>
+                </publishRegistry>
+              </docker>
             </configuration>
           </plugin>
         </plugins>

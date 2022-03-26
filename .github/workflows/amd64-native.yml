@@ -10,28 +10,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      #Setup Java
       - uses: actions/setup-java@v2
         with:
           distribution: 'liberica' # See 'Supported distributions' for available options
           java-version: '17'
-      - name: Checkout master
+      #Checkout Main
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
           submodules: true
-      #Build Image
-      - name: Build Image
-        run: ./mvnw -Pnative-amd64 spring-boot:build-image -DskipTests
-
-      #Login
+      #Registry Login
       - name: Log in to the container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GH_TOKEN }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        with:
-          context: .
-          push: true
+      #Build Image
+      - name: Build Image
+        run: ./mvnw -Pnative-amd64 spring-boot:build-image -DskipTests
